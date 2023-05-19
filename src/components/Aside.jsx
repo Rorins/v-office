@@ -44,12 +44,15 @@ export default function aside() {
           <img className="logo w-52" src="/logo-top.svg" />
           <div className="room_container flex space-y-10 flex-col mx-2 ">
             {/* Personal room */}
-            {console.log(usersData, "LOOKIE")}
-            <Room />
+            {/* <Room /> */}
             {/* Colleagues room */}
             <div className="colleagues_room">
-              <Room />
-              <Room />
+                {usersData.map((user) => (
+                    <Room user={user} key={user.id} />
+                )
+                )}
+              {/* <Room />
+              <Room /> */}
             </div>
           </div>
           <FontAwesomeIcon
