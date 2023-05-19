@@ -2,8 +2,10 @@
 import React from "react";
 import signIn from "@/firebase/auth/signin";
 import { useRouter } from 'next/navigation'
+import { useAuthContext } from "@/context/AuthContext";
 
 function Page() {
+  const { user } = useAuthContext()
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const router = useRouter()
@@ -16,10 +18,15 @@ function Page() {
         if (error) {
             return console.log(error)
         }
+        
+         // else successful
+        console.log(user, "USER FOR WHAT I NEED")
+        const {uid} = user;
+        console.log(uid, "ID SLUG FOR WHAT I NEED")
 
-        // else successful
         console.log(result)
-        return router.push("/admin")
+        // return router.push("/main")
+        return router.push(`/${uid}`)
     }
     return (
         <div className="signIn flex min-h-screen flex-col items-center justify-between p-24">
