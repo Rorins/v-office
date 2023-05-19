@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import Webcam from "react-webcam";
 
@@ -30,18 +30,21 @@ export default function Camera() {
     setIsDragging(false);
   };
 
-    return (
-        <div className="webcam_container" >
-         <Webcam imageSmoothing={true} audio={false} 
-         style={{
-            position: "absolute",
-            left: webcamPosition.x,
-            top: webcamPosition.y,
-            cursor: isDragging ? "grabbing" : "grab",
-          }}
+  return (
+    <div className="webcam_container">
+      <Webcam
+        imageSmoothing={true}
+        audio={false}
+        style={{
+          position: "absolute",
+          left: webcamPosition.x,
+          top: webcamPosition.y,
+          cursor: isDragging ? "grabbing" : "grab",
+        }}
         onMouseDown={handleWebcamMouseDown}
         onMouseMove={handleWebcamMouseMove}
-        onMouseUp={handleWebcamMouseUp}/>
-        </div>
-    )
+        onMouseUp={handleWebcamMouseUp}
+      />
+    </div>
+  );
 }

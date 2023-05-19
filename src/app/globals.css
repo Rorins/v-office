@@ -27,53 +27,62 @@ body {
 }
 
 /*Utilities*/
-.height_100vh{
-  height:100vh;
+.height_100vh {
+  height: 100vh;
 }
-.bg_primarycolor{
-  background-color:#f3d3b1;
+.bg_primarycolor {
+  background-color: #f3d3b1;
 }
-.bg_primarycolor_shadow{
-  background-color:  #f3d3b1de;
+.bg_primarycolor_shadow {
+  background-color: #f3d3b1de;
 }
 
 /* Sign in */
-.signIn{
+.signIn {
   background-color: #f3d3b1;
 }
 
 /* Main*/
-.main{
-  background:url("/defaultbg.jpg");
-  background-position:center;
-  background-size:100%;
+.main {
+  background: url("/defaultbg.jpg");
+  background-position: center;
+  background-size: 100%;
   background-repeat: no-repeat;
 }
 
 /*aside*/
 
-aside{
+aside {
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-  position:relative;
+  position: relative;
 }
 
-
-aside .logo{
-  margin:30px auto;
+aside .logo {
+  margin: 30px auto;
 }
 
-aside .sign_out{
-  position:absolute;
-  left:20px;
-  bottom:10px;
-  cursor:pointer;
+aside .sign_out {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  cursor: pointer;
 }
 
 /*Camera*/
-.webcam_container{
-  width:300px;
-  height:300px;
-  border-radius:50px;
-  position:absolute;
-  top:10px;
+.webcam_container {
+  width: 300px;
+  height: 300px;
+  border-radius: 50px;
+  position: absolute;
+  top: 50%;
+  right:50%;
+}
+
+/* Room */
+.room_container{
+  height:80%;
+}
+.room{
+  background-color:black;
+  height:150px;
 }

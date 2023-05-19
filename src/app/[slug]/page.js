@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 //components
 import Aside from "@/components/Aside";
@@ -8,15 +8,15 @@ import Playlist from "@/components/Playlist";
 import Camera from "@/components/Camera";
 
 function Page() {
-
-    return (
+  return (
     <div className="main">
-    <Aside/>
-    <Camera/>
-     <Chat />
-     <Video />
-     <Playlist />
-    </div>);
+      <Aside />
+      <Camera />
+      <Chat />
+      <Video />
+      <Playlist />
+    </div>
+  );
 }
 
 export default Page;
