@@ -5,13 +5,13 @@ import Aside from "@/components/Aside";
 import Chat from "@/components/Chat";
 import Video from "@/components/Video";
 import Playlist from "@/components/Playlist";
-import Camera from "@/components/Camera";
+import Toolbar from "@/components/Toolbar";
 
 function Page() {
   return (
     <div className="main">
       <Aside />
-      <Camera />
+      <Toolbar />
       <Chat />
       <Video />
       <Playlist />

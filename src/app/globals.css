@@ -114,3 +114,79 @@ aside .log_out {
   background-color:#f3d3b1;
   color:black;
 }
+
+/*Youtube*/
+.youtube_container{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Toolbar */
+
+.toolbar{
+  position:absolute;
+  top:100px;
+  right:100px;
+  width:150px;
+  height:150px;
+  background-color:#f3d3b1;
+  border-radius:50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid	#374151;
+  transition: transform 0.5s;
+  cursor:pointer;
+}
+
+/* .toolbar:hover {
+  animation: spin 1s linear 1;
+} */
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.toolbar .logo{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100px;
+}
+
+.toolbar .icon{
+  position:absolute;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  background-color:white;
+  border: 3px solid	#374151;
+}
+
+.toolbar .camera_button{
+  margin:8px;
+}
+
+.toolbar .icon.webcam{
+  top:-25px;
+}
+
+
+.toolbar .icon.mp3{
+  right:-20px;
+}
+
+.toolbar .icon.chat{
+  left:-20px;
+}
+
+.toolbar .icon.upload{
+  bottom:-25px;
+}

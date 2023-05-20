@@ -29,6 +29,7 @@ export default function Camera() {
   const handleWebcamMouseUp = () => {
     setIsDragging(false);
   };
+  
 
   return (
     <div className="webcam_container">
