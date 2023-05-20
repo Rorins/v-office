@@ -37,7 +37,8 @@ const openCamera = () => {
      <div className="icon upload" >
     <FontAwesomeIcon className="camera_button" icon={faYoutube} />
     </div>  
-
+     
+    {/* All tools */}
     {isCameraOpen && <Camera/>}  
     <YouTubeVideo videoId={videoId} />
     </div>

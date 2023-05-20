@@ -183,3 +183,18 @@ aside .log_out {
 .toolbar .icon.upload{
   bottom:-25px;
 }
+
+/*chat*/
+.main .chatbox{
+  position: fixed;
+  bottom: 20px;
+  right:20px;
+}
+
+.chatbox .sent{
+  background-color:#f3d3b1;
+}
+
+.chatbox .received{
+  background-color:white;
+}
