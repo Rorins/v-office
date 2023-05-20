@@ -15,7 +15,7 @@ const openCamera = () => {
     setIsCameraOpen(true);
   };
 
-  const videoId = "GaCm79Zv3c0";
+  // const videoId = "GaCm79Zv3c0";
 
 
 
@@ -40,7 +40,7 @@ const openCamera = () => {
      
     {/* All tools */}
     {isCameraOpen && <Camera/>}  
-    <YouTubeVideo videoId={videoId} />
+    <YouTubeVideo />
     </div>
   );
 }
