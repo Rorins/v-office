@@ -10,15 +10,11 @@ import YouTubeVideo from "@/components/YoutubeVideo";
 function Toolbar() {
 //tool triggers
 const [isCameraOpen, setIsCameraOpen] = useState(false);
-const [isYoutubeOpen, setIsYoutubeOpen] = useState(false);
 
 const openCamera = () => {
     setIsCameraOpen(true);
   };
 
-  const openYoutube = () => {
-    setIsYoutubeOpen(true);
-  };
   const videoId = "GaCm79Zv3c0";
 
 
@@ -38,12 +34,12 @@ const openCamera = () => {
     <FontAwesomeIcon className="camera_button" icon={faCommentDots} />
     </div>    
 
-     <div className="icon upload" onClick={openYoutube}>
+     <div className="icon upload" >
     <FontAwesomeIcon className="camera_button" icon={faYoutube} />
     </div>  
 
     {isCameraOpen && <Camera/>}  
-   {isYoutubeOpen && <YouTubeVideo videoId={videoId} />}
+    <YouTubeVideo videoId={videoId} />
     </div>
   );
 }
