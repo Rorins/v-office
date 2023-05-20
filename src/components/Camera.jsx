@@ -12,6 +12,8 @@ export default function Camera() {
     setDragStartPos({ x: event.clientX, y: event.clientY });
   };
 
+// Test for first commit
+
   const handleWebcamMouseMove = (event) => {
     if (!isDragging) return;
 
