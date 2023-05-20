@@ -116,6 +116,12 @@ aside .log_out {
   transform: translate(-50%, -50%);
 }
 
+.videochat_container {
+  position: fixed;
+  top: 1%;
+  left: 16%;
+} 
+
 /* Toolbar */
 
 .toolbar{
