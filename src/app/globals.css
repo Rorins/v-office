@@ -44,7 +44,7 @@ body {
 
 /* Main*/
 .main {
-  background: url("/defaultbg.jpg");
+  background: url("/defaultbg2.jpg");
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -97,12 +97,20 @@ aside .log_out {
   position:relative;
 }
 
-.room h2{
+.room .tag{
   position:absolute;
   top:50%;
-  background-color:black;
   color:white;
   padding:4px;
   border-radius:10px;
+}
+
+.room .tag.name{
   left:5%;
+  background-color:black;
+}
+.room .tag.status{
+  right:5%;
+  background-color:#f3d3b1;
+  color:black;
 }
