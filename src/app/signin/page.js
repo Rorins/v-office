@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/AuthContext";
 
 function Page() {
-  const { user } = useAuthContext();
+  const { user, setUser } = useAuthContext();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const router = useRouter();
@@ -19,15 +19,17 @@ function Page() {
       return console.log(error);
     }
 
-    // else successful
-    console.log(user, "USER FOR WHAT I NEED");
-    const { uid } = user;
-    console.log(uid, "ID SLUG FOR WHAT I NEED");
+    setUser(result.user);
 
-    console.log(result);
-    // return router.push("/main")
-    return router.push(`/${uid}`);
+console.log(result)
   };
+  
+  React.useEffect(() => {
+    if (user !== null) {
+      const { uid } = user;
+      router.push(`/${uid}`);
+    }
+  }, [user,router]);
   return (
     <div className="signIn flex min-h-screen flex-col items-center justify-between p-24">
       <section>

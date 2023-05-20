@@ -28,21 +28,27 @@ export default function aside() {
 
   const signOut = () => {
     setUser(null);
-    if (user == null) router.push("/signin");
-    console.log("signed out");
   };
+
+   // Handle user state change
+   React.useEffect(() => {
+    if (user === null) {
+      router.push("/signin");
+      console.log("signed out");
+    }
+  }, [user]);
 
 //Retrieve data
 
   return (
     <>
-      <aside className="height_100vh w-64 min-h-0 flex-1 flex overflow-hidden">
+      <aside className="height_100vh w-72 min-h-0 flex-1 flex overflow-hidden">
         <nav
           aria-label="Sidebar"
           className="hidden lg:block flex-shrink-0 bg_primarycolor_shadow overflow-y-auto w-full h-full"
         >
           <img className="logo w-52" src="/logo-top.svg" />
-          <div className="room_container flex space-y-10 flex-col mx-2 ">
+          <div className="room_container flex space-y-10 flex-col mx-4">
             {/* Personal room */}
             {/* <Room /> */}
             {/* Colleagues room */}
@@ -55,11 +61,12 @@ export default function aside() {
               <Room /> */}
             </div>
           </div>
+          <button onClick={signOut} className="log_out">
           <FontAwesomeIcon
             className="sign_out"
             icon={faArrowRightFromBracket}
-            onClick={signOut}
           />
+          </button>
         </nav>
       </aside>
     </>

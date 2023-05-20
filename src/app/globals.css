@@ -61,12 +61,16 @@ aside .logo {
   margin: 30px auto;
 }
 
-aside .sign_out {
-  position: absolute;
-  left: 20px;
-  bottom: 10px;
+aside .log_out {
   cursor: pointer;
+  display:flex;
+  margin:20px;
 }
+
+.log_out h3{
+  margin-right:10px;
+}
+
 
 /*Camera*/
 .webcam_container {
@@ -83,6 +87,22 @@ aside .sign_out {
   height:80%;
 }
 .room{
-  background-color:gray;
+  background: url("/defaultbg.jpg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
   height:150px;
+  cursor:pointer;
+  border-radius: 50px;
+  position:relative;
+}
+
+.room h2{
+  position:absolute;
+  top:50%;
+  background-color:black;
+  color:white;
+  padding:4px;
+  border-radius:10px;
+  left:5%;
 }
