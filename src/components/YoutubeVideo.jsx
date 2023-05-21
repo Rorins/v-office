@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import YouTube from "react-youtube";
+import firebase_app from "../firebase/config";
+import { getFirestore, doc, updateDoc } from "firebase/firestore";
+const db = getFirestore(firebase_app);
+
 export default function YoutubeVideo() {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -29,10 +33,32 @@ export default function YoutubeVideo() {
     setVideoId(videoId);
   };
 
+  //YOUTUBE SYNC
+
+ // Update video time in Firestore
+ const handlePlayerStateChange = async (event) => {
+  //info we need to sync youtube
+  const currentTime = event.target.getCurrentTime();
+  const currentURL = new URL(window.location.href);
+  const roomId = currentURL.pathname.substring(1);
+  console.log(roomId, "ROOM ID FOR VIDEO");
+  console.log(currentTime, "CURRENT TIME");
+
+  try {
+    await updateDoc(doc(db, "users", roomId), {
+      videoid: videoId,
+      currenttime: currentTime,
+    });
+    console.log("Document updated successfully");
+  } catch (error) {
+    console.error("Error updating document:", error);
+  }
+};
+
   return (
     //Main Youtube
     <div className="youtube_container">
-      <YouTube videoId={videoId} opts={opts} />
+      <YouTube onStateChange={handlePlayerStateChange} videoId={videoId} opts={opts} />
       <div>
         <form onSubmit={handleSearch}>
           <label
