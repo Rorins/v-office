@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faCommentDots, faHeadphones, faVideo } from "@fortawesome/free-solid-svg-icons";
 //Components
 import Camera from "@/components/Camera";
-import YouTubeVideo from "@/components/YoutubeVideo";
 import Video from "@/components/Video";
 
 function Toolbar() {
@@ -43,7 +42,6 @@ const openCamera = () => {
      
     {/* All tools */}
     {isCameraOpen && <Camera/>}  
-   <YouTubeVideo />
    {isVideoOpen && <Video />}
     </div>
   );
