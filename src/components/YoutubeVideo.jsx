@@ -1,18 +1,42 @@
-import React, { useState } from "react";
+"use client"
+import React, { useState, useEffect , useRef} from "react";
 import YouTube from "react-youtube";
 import firebase_app from "../firebase/config";
-import { getFirestore, doc, updateDoc } from "firebase/firestore";
+import { useAuthContext } from "@/context/AuthContext";
+import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
+import { parse } from 'url';
 import Draggable from "react-draggable";
+import checkRoom from '@/firebase/auth/checkRoom'
 
 const db = getFirestore(firebase_app);
 
 export default function YoutubeVideo() {
+  const { user, setUser } = useAuthContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [videoId, setVideoId] = useState("YB0SqL1A9NU");
+  const [currentTime, setCurrentTime] = useState(0);
+  const [isThisMyRoom, setIsThisMyRoom] = useState();
+  const [player, setPlayer] = useState(null); // Store the player instance
 
-  //Options
-  const opts = {
+  const intervalRef = useRef(null); // Ref to hold the interval reference
+  // ...
+
+  // My Room check
+  const myRoomCheck = async () => {
+    const currentURL = parse(window.location.href);
+    const roomId = currentURL.pathname.substring(1);
+    const { uid } = user;
+    setIsThisMyRoom(await checkRoom(uid, roomId)); // Wait for the checkRoom function to resolve
+  };
+
+  useEffect(() => {
+    myRoomCheck();
+    initializeOpts();
+  }, []);
+
+  // Options
+  let opts = {
     height: "390",
     width: "640",
     playerVars: {
@@ -20,101 +44,187 @@ export default function YoutubeVideo() {
     },
   };
 
-  //Search videos
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?key=AIzaSyCFRuSs9j6E4PF-UWVHzohH3sLoR1VpNX8&q=${searchQuery}&part=snippet&type=video`
-    );
-    const data = await response.json();
-    setSearchResults(data.items);
+  const initializeOpts = async () => {
+    const currentURL = parse(window.location.href);
+    const roomId = currentURL.pathname.substring(1);
+    if (!isThisMyRoom) {
+      try {
+        const docRef = doc(db, "users", roomId);
+        const docSnapshot = await getDoc(docRef);
+  
+        if (docSnapshot.exists()) {
+          const data = docSnapshot.data();
+          const videostate = data.videostatus;
+        
+          opts = {
+            height: "390",
+            width: "640",
+            playerVars: {
+              autoplay: videostate === "play" ? 1 : 0,
+            },
+          };
+        }
+      } catch (error) {
+        console.error("Error retrieving document:", error);
+      }
+    }
   };
 
-  //Id handler
-  const handleId = (videoId) => {
-    setVideoId(videoId);
+  // ...
+
+  // YOUTUBE SYNC
+
+  // Update video time in Firestore
+  const handlePlayerStateChange = async (event) => {
+    const player = event.target;
+    const newCurrentTime = player.getCurrentTime();
+    let newVideostate;
+  
+    const currentURL = new URL(window.location.href);
+    const roomId = currentURL.pathname.substring(1);
+  
+    if (isThisMyRoom) {
+      if (event.data === window.YT.PlayerState.PLAYING) {
+        newVideostate = "play";
+      } else if (event.data === window.YT.PlayerState.PAUSED) {
+        newVideostate = "pause";
+      } else {
+        newVideostate = "stop";
+      }
+  
+      if (newVideostate === "play") {
+        intervalRef.current = setInterval(async () => {
+          const currentTime = player.getCurrentTime();
+          await updateDoc(doc(db, "users", roomId), {
+            currenttime: currentTime,
+          });
+        }, 1500);
+      } else {
+        clearInterval(intervalRef.current);
+      }
+  
+      try {
+        const docRef = doc(db, "users", roomId);
+        const docSnapshot = await getDoc(docRef);
+  
+        if (docSnapshot.exists()) {
+          const data = docSnapshot.data();
+          const storedCurrentTime = data.currenttime;
+          setCurrentTime(storedCurrentTime);
+        }
+      } catch (error) {
+        console.error("Error retrieving document:", error);
+      }
+  
+      // Update the current time in Firestore
+      try {
+        await updateDoc(doc(db, "users", roomId), {
+          videoid: videoId,
+          currenttime: newCurrentTime,
+          videostatus: newVideostate,
+        });
+        console.log("Document updated successfully");
+      } catch (error) {
+        console.error("Error updating document:", error);
+      }
+    } else {
+      try {
+        const docRef = doc(db, "users", roomId);
+        const docSnapshot = await getDoc(docRef);
+  
+        if (docSnapshot.exists()) {
+          const data = docSnapshot.data();
+          const ownerVideoStatus = data.videostatus;
+  
+          if (ownerVideoStatus === "play") {
+            player.playVideo();
+          } else if (ownerVideoStatus === "pause") {
+            player.pauseVideo();
+          } else if (ownerVideoStatus === "stop") {
+            player.stopVideo();
+          }
+        }
+      } catch (error) {
+        console.error("Error retrieving document:", error);
+      }
+    }
   };
 
-  //YOUTUBE SYNC
+  useEffect(() => {
+    if (!isThisMyRoom) {
+      intervalRef.current = setInterval(async () => {
+        const currentURL = new URL(window.location.href);
+        const roomId = currentURL.pathname.substring(1);
+        const docRef = doc(db, "users", roomId);
+  
+        try {
+          const snapshot = await getDoc(docRef); // Declare a separate variable to capture the snapshot
+          if (snapshot.exists()) {
+            const data = snapshot.data();
+            const ownerVideoStatus = data.videostatus;
 
- // Update video time in Firestore
- const handlePlayerStateChange = async (event) => {
-  //info we need to sync youtube
-  const currentTime = event.target.getCurrentTime();
-  const currentURL = new URL(window.location.href);
-  const roomId = currentURL.pathname.substring(1);
-  console.log(roomId, "ROOM ID FOR VIDEO");
-  console.log(currentTime, "CURRENT TIME");
+            if (ownerVideoStatus === "play") {
+              player.playVideo();
+            } else if (ownerVideoStatus === "pause") {
+              player.pauseVideo();
+            } else if (ownerVideoStatus === "stop") {
+              player.stopVideo();
+            }
+          }
+        } catch (error) {
+          console.error("Error retrieving document:", error);
+        }
+      }, 2000); // Adjust the interval duration as needed
+    }
 
-  try {
-    await updateDoc(doc(db, "users", roomId), {
-      videoid: videoId,
-      currenttime: currentTime,
-    });
-    console.log("Document updated successfully");
-  } catch (error) {
-    console.error("Error updating document:", error);
-  }
-};
+    return () => {
+      clearInterval(intervalRef.current);
+    };
+  }, [isThisMyRoom, player]); // Include player in the dependency array
+
+
+  const handlePlayerReady = async (event) => {
+    setPlayer(event.target); // Store the player instance
+    if (!isThisMyRoom) {
+      const currentURL = parse(window.location.href);
+      const roomId = currentURL.pathname.substring(1);
+  
+      try {
+        const docRef = doc(db, "users", roomId);
+        const docSnapshot = await getDoc(docRef);
+  
+        if (docSnapshot.exists()) {
+          const data = docSnapshot.data();
+          const videostate = data.videostatus;
+          const storedCurrentTime = data.currenttime;
+  
+          if (videostate === "play") {
+            event.target.seekTo(storedCurrentTime); // Seek the player to the stored current time
+            setTimeout(() => {
+              event.target.playVideo(); // Start playing the video after a small delay
+            }, 500);
+          }
+        }
+      } catch (error) {
+        console.error("Error retrieving document:", error);
+      }
+    }
+  };
+
+  // ...
 
   return (
-    //Main Youtube
+    // Main Youtube
     <Draggable>
-    <div className="youtube_container">
-      <YouTube onStateChange={handlePlayerStateChange} videoId={videoId} opts={opts} />
-      <div>
-        <form onSubmit={handleSearch}>
-          <label
-            htmlFor="default-search"
-            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
-          >
-            Search
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5 text-gray-500 dark:text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                ></path>
-              </svg>
-            </div>
-            <input
-              type="search"
-              id="default-search"
-              className="block w-full w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Search video"
-              required
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button
-              type="submit"
-              className="text-white absolute right-2.5 bottom-2.5 bg-yellow-800 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Search
-            </button>
-          </div>
-        </form>
-        {/* Display search results */}
-        <div>
-          {searchResults.map((result) => (
-            <div className="result"  onClick={() => handleId(result.id.videoId)} key={result.id.videoId}>
-              <h3>{result.snippet.title}</h3>
-            </div>
-          ))}
-        </div>
+      <div className="youtube_container">
+        <YouTube
+          onStateChange={handlePlayerStateChange}
+          videoId={videoId}
+          opts={opts}
+          onReady={handlePlayerReady} // Call handlePlayerReady when the player is ready
+        />
+        {/* ... */}
       </div>
-    </div>
     </Draggable>
   );
 }
