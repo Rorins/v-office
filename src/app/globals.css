@@ -37,7 +37,7 @@ body {
 
 /* Main*/
 .main {
-  background: url("/defaultbg2.jpg");
+  background: url("/defaultbg1.jpg");
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -80,7 +80,7 @@ aside .log_out {
   height:80%;
 }
 .room{
-  background: url("/defaultbg.jpg");
+  background: url("/defaultbg1.jpg");
   background-position: center;
   background-size: 100%;
   background-repeat: no-repeat;
