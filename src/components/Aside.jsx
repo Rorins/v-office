@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import getAllData from "@/firebase/firestore/getAllData";
+import { parse } from 'url';
 //components
 import Room from "@/components/Room";
 
@@ -12,6 +13,9 @@ export default function aside() {
   const { user, setUser } = useAuthContext();
   const router = useRouter();
   const [usersData, setUsersData] = useState([])
+
+  const currentURL = parse(window.location.href);
+  const roomId = currentURL.pathname.substring(1);
 
  //Retrieve users data
   const getUsers = async () =>{
@@ -49,12 +53,20 @@ export default function aside() {
         >
           <img className="logo w-52" src="/logo-top.svg" />
           <div className="room_container flex space-y-10 flex-col mx-4">
+            <div className="my_room">
+            {user && usersData.filter(singleUser => singleUser.id === user.uid).map(filteredUser => (
+              <Room user={filteredUser} key={user.id} />
+            )
+            ) }
+
+            </div>
+
             {/* Colleagues room */}
             <div className="colleagues_room">
-                {usersData.map((user) => (
-                    <Room user={user} key={user.id} />
-                )
-                )}
+            {user && usersData.filter(singleUser => singleUser.id !== user.uid).map(filteredUser => (
+              <Room user={filteredUser} key={user.id} />
+            )
+            ) }
             </div>
           </div>
           <button onClick={signOut} className="log_out">
