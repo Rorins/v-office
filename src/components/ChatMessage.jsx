@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import { useAuthContext } from "@/context/AuthContext";
 
 export default function ChatMessage(props) {
@@ -11,11 +11,15 @@ export default function ChatMessage(props) {
         uid = user.uid;
     }
     
+    
+    
     const messageType = uiduser === uid ? 'sent' : 'received';
   
   return (
     <div className= {`message ${messageType}`}>
-       <p>{text}</p>
+       <p className="max-w-xs overflow-hidden overflow-ellipsis">
+       <span className="whitespace-pre-wrap">{text}</span>
+        </p>
     </div>
  )
 }

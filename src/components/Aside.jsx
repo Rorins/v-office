@@ -45,20 +45,16 @@ export default function aside() {
       <aside className="height_100vh w-72 min-h-0 flex-1 flex overflow-hidden">
         <nav
           aria-label="Sidebar"
-          className="hidden lg:block flex-shrink-0 bg_primarycolor_shadow overflow-y-auto w-full h-full"
+          className="hidden lg:block flex-shrink-0 bg_primarycolor_shadow w-full h-full"
         >
           <img className="logo w-52" src="/logo-top.svg" />
           <div className="room_container flex space-y-10 flex-col mx-4">
-            {/* Personal room */}
-            {/* <Room /> */}
             {/* Colleagues room */}
             <div className="colleagues_room">
                 {usersData.map((user) => (
                     <Room user={user} key={user.id} />
                 )
                 )}
-              {/* <Room />
-              <Room /> */}
             </div>
           </div>
           <button onClick={signOut} className="log_out">

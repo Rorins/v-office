@@ -4,6 +4,8 @@ import firebase_app from "@/firebase/config";
 import { collection, query, orderBy, limit, getDoc,  getFirestore ,addDoc, serverTimestamp} from "firebase/firestore";
 import { useCollectionData } from "react-firebase9-hooks/firestore";
 import { useAuthContext } from "@/context/AuthContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
 //Components
 import ChatMessage from "@/components/ChatMessage";
 
@@ -31,15 +33,18 @@ export default function Chat() {
   }
  
   return (
-  <div className="chatbox">
-  <div className="messagesbox">
+  <div className="chatbox ">
+    <span className="office_chat">Office Chat</span>
+  <div className="messagesbox flex-grow h-64 w-72  overflow-y-auto">
     {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg}/>)}
   </div>
 
-  <form onSubmit={sendMessage}>
-    <input value={formValue} onChange={(e) =>setFormValue(e.target.value)}/>
-  <button type="submit">
-   submit
+  <form  onSubmit={sendMessage}>
+    <input className="submit" value={formValue} onChange={(e) =>setFormValue(e.target.value)}/>
+  <button className="send_button mx-2" type="submit">
+  <FontAwesomeIcon
+            icon={faPaperPlane}
+    />
   </button>
   </form>
 

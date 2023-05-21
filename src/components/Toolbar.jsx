@@ -1,21 +1,24 @@
 "use client";
 import React, {useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faCommentDots, faHeadphones } from "@fortawesome/free-solid-svg-icons";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faCamera, faCommentDots, faHeadphones, faVideo } from "@fortawesome/free-solid-svg-icons";
 //Components
 import Camera from "@/components/Camera";
 import YouTubeVideo from "@/components/YoutubeVideo";
+import Video from "@/components/Video";
 
 function Toolbar() {
 //tool triggers
 const [isCameraOpen, setIsCameraOpen] = useState(false);
+const [isVideoOpen, setIsVideoOpen] = useState(false);
 
 const openCamera = () => {
     setIsCameraOpen(true);
   };
 
-  // const videoId = "GaCm79Zv3c0";
+  const openVideo = () => {
+    setIsVideoOpen(true);
+  };
 
 
 
@@ -34,13 +37,14 @@ const openCamera = () => {
     <FontAwesomeIcon className="camera_button" icon={faCommentDots} />
     </div>    
 
-     <div className="icon upload" >
-    <FontAwesomeIcon className="camera_button" icon={faYoutube} />
+     <div className="icon upload" onClick={openVideo} >
+    <FontAwesomeIcon className="camera_button" icon={faVideo} />
     </div>  
      
     {/* All tools */}
     {isCameraOpen && <Camera/>}  
-    <YouTubeVideo />
+   <YouTubeVideo />
+   {isVideoOpen && <Video />}
     </div>
   );
 }
