@@ -82,6 +82,7 @@ aside .log_out {
   position: absolute;
   top: 50%;
   right:50%;
+  cursor:grab;
 }
 
 /* Room */
@@ -131,11 +132,14 @@ aside .log_out {
 /*Youtube*/
 .youtube_container{
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 20%;
+  left: 40%;
   transform: translate(-50%, -50%);
-  width:640px;
-  height:390px;
+  background-color:white;
+  padding:20px;
+  cursor:grab;
+  border-radius:20px;
+  background-color: #f3d3b1;
 }
 
 .youtube_container .result{
@@ -148,7 +152,16 @@ aside .log_out {
   position: fixed;
   top: 1%;
   left: 16%;
+  padding:20px;
+  cursor:grab;
+  border-radius:20px;
+  background-color: #f3d3b1;
 } 
+
+.videochat_container .close{
+  cursor:pointer;
+  margin-bottom:10px;
+}
 
 /* Toolbar */
 
@@ -225,6 +238,7 @@ aside .log_out {
   position: fixed;
   bottom: 20px;
   right:20px;
+  cursor:grab;
 }
 
 .chatbox .office_chat{

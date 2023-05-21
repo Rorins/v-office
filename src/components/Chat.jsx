@@ -6,6 +6,7 @@ import { useCollectionData } from "react-firebase9-hooks/firestore";
 import { useAuthContext } from "@/context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane} from "@fortawesome/free-solid-svg-icons";
+import Draggable from "react-draggable";
 //Components
 import ChatMessage from "@/components/ChatMessage";
 
@@ -33,6 +34,7 @@ export default function Chat() {
   }
  
   return (
+  <Draggable>
   <div className="chatbox ">
     <span className="office_chat">Office Chat</span>
   <div className="messagesbox flex-grow h-64 w-72  overflow-y-auto">
@@ -49,5 +51,6 @@ export default function Chat() {
   </form>
 
 
-  </div>)
+  </div>
+  </Draggable>)
 }

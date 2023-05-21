@@ -52,7 +52,7 @@ function Page() {
       </img>}
       <Aside />
       {isThisMyRoom && <Toolbar />}
-      <YouTubeVideo />
+      <YouTubeVideo roomStatus={isThisMyRoom} />
       <Chat />
       <Playlist />
     </div>

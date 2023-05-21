@@ -2,8 +2,11 @@ import { useEffect, useRef } from 'react';
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/context/AuthContext";
 import { parse } from 'url';
+import Draggable from "react-draggable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function Video() {
+export default function Video(props) {
   const meetContainerRef = useRef(null);
   const { user, setUser } = useAuthContext();
   const router = useRouter();
@@ -43,8 +46,16 @@ export default function Video() {
   };
 
   return (
-    <div className="videochat_container">
+    <Draggable>
+    <div className="videochat_container ">
+    <FontAwesomeIcon
+            className="close"
+            icon={faCircleXmark}
+            size="2x"
+            onClick={props.onClose}
+          />
       <div ref={meetContainerRef} id="meet" />
     </div>
+    </Draggable>
   );
 }

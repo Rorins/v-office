@@ -11,15 +11,19 @@ function Toolbar() {
 const [isCameraOpen, setIsCameraOpen] = useState(false);
 const [isVideoOpen, setIsVideoOpen] = useState(false);
 
+//Camera
 const openCamera = () => {
     setIsCameraOpen(true);
   };
 
+  //Video
   const openVideo = () => {
     setIsVideoOpen(true);
   };
 
-
+  const closeVideo = () => {
+    setIsVideoOpen(false);
+  };
 
   return (
     <div className="toolbar relative">
@@ -42,7 +46,7 @@ const openCamera = () => {
      
     {/* All tools */}
     {isCameraOpen && <Camera/>}  
-   {isVideoOpen && <Video />}
+   {isVideoOpen && <Video onClose={closeVideo}/>}
     </div>
   );
 }

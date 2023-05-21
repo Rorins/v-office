@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import YouTube from "react-youtube";
 import firebase_app from "../firebase/config";
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
+import Draggable from "react-draggable";
+
 const db = getFirestore(firebase_app);
 
 export default function YoutubeVideo() {
@@ -57,6 +59,7 @@ export default function YoutubeVideo() {
 
   return (
     //Main Youtube
+    <Draggable>
     <div className="youtube_container">
       <YouTube onStateChange={handlePlayerStateChange} videoId={videoId} opts={opts} />
       <div>
@@ -112,5 +115,6 @@ export default function YoutubeVideo() {
         </div>
       </div>
     </div>
+    </Draggable>
   );
 }
