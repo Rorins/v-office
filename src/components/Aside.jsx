@@ -91,8 +91,9 @@ export default function aside() {
           <img className="logo w-52" src="/logo-top.svg" />
           <div className="room_container flex space-y-10 flex-col mx-4">
             {/* My room */}
-            <div className="toggle_availability" onClick={() => ToggleAvailability(user.uid)}>toggle test</div>
+            
             <div className="room_section_container">
+            <div className="toggle_availability" onClick={() => ToggleAvailability(user.uid)}>Am I available?</div>
             <div className="room_label text-yellow-800">My room</div>
               <div className="my_room">
                 {user &&
