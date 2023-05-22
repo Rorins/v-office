@@ -1,7 +1,7 @@
 "use client";
 import React, {useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faCommentDots, faHeadphones, faVideo } from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faCommentDots, faIcons, faVideo } from "@fortawesome/free-solid-svg-icons";
 //Components
 import Camera from "@/components/Camera";
 import Video from "@/components/Video";
@@ -33,7 +33,7 @@ const openCamera = () => {
     </div>  
 
     <div className="icon mp3">
-    <FontAwesomeIcon className="camera_button" icon={faHeadphones} />
+    <FontAwesomeIcon className="camera_button" icon={faIcons} />
     </div>    
 
     <div className="icon chat">

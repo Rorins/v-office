@@ -4,17 +4,26 @@ import getData from "@/firebase/firestore/getData";
 import { useAuthContext } from "@/context/AuthContext";
 import { parse } from 'url';
 import checkRoom from '@/firebase/auth/checkRoom'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleArrowDown } from "@fortawesome/free-solid-svg-icons";
 //components
 import Aside from "@/components/Aside";
 import Chat from "@/components/Chat";
 import Playlist from "@/components/Playlist";
 import Toolbar from "@/components/Toolbar";
 import YouTubeVideo from "@/components/YoutubeVideo";
+import AboutMe from "@/components/AboutMe";
+import Canvas from "@/components/Canvas";
 
 function Page() {
   const { user, setUser } = useAuthContext();
   const [userData, setUserData] = useState(null)
   const [isThisMyRoom, setIsThisMyRoom] = useState()
+
+  const handleArrowDownClick = () => {
+    const element = document.querySelector(".arrow_down_target");
+    element.scrollIntoView({ behavior: "smooth" });
+  };
 
    //Checking rooms
    const myRoomCheck = async () =>{
@@ -55,6 +64,21 @@ function Page() {
       <YouTubeVideo roomStatus={isThisMyRoom} />
       <Chat />
       <Playlist />
+      <Canvas />
+     {userData && <AboutMe description={userData.description} username={userData.name}/>}
+
+     {/* arrow */}
+     <div className="whiteboard_pointer">
+      <h2>Whiteboard</h2>
+     <FontAwesomeIcon
+            className="arrow_down"
+            icon={faCircleArrowDown}
+            size="2x"
+            onClick={handleArrowDownClick}
+       />
+       </div>
+
+       <div className="arrow_down_target" style={{ height: "5x" }} ></div>
     </div>
   );
 }
