@@ -18,7 +18,6 @@ export default function aside() {
 
   const { user, setUser } = useAuthContext();
   const router = useRouter();
-  const [usersData, setUsersData] = useState([]);
 
   const [ siteState, setSiteState ] = React.useContext(SiteContext);
 
@@ -26,7 +25,6 @@ export default function aside() {
   const getUsers = async () => {
     const { usersData, error } = await getAllData("users");
     console.log(usersData, "DATA ARRIVED");
-    setUsersData(usersData);
     setSiteState(usersData);
   };
 

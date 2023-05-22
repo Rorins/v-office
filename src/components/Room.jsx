@@ -1,11 +1,8 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { SiteContext } from "@/context/SiteContext";
 
 export default function Room({user, myRoom}) {
-  
-  const [siteState, setSiteState] = React.useContext(SiteContext);
 
 //Change rooms
   function navigateRoom() {
