@@ -281,7 +281,7 @@ aside .log_out {
 }
 
 
-.toolbar .icon.mp3{
+.toolbar .icon.gear{
   right:-20px;
 }
 
@@ -289,8 +289,110 @@ aside .log_out {
   left:-20px;
 }
 
-.toolbar .icon.upload{
+.toolbar .icon.video{
   bottom:-25px;
+}
+
+/* Options */
+
+.options_modal {
+  width: 90vw;
+  height: 90vh;
+  background-color: #f3d3b1;
+  position: fixed;
+  z-index: 15;
+  top: 5%;
+  left: 5%;
+  border-radius: 50px;
+  border: 1px solid #854d0e;
+}
+
+.close_modal_button {
+  position: fixed;
+  right: 10%;
+  top: 10%;
+  border-radius: 50%;
+  border: 1px solid black;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+/*Selection bg in option*/
+
+.bg_selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bg_selection h2 {
+  padding: 40px;
+  font-weight: bold;
+}
+
+.bg_choices {
+  width: 80%;
+  display: flex;
+  overflow-x: scroll;
+  flex-wrap: nowrap;
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #854d0e;
+  border-radius: 30px;
+}
+
+.bg_card_container {
+  flex: 0 0 auto; /* Imposta la flessibilità delle card */
+  width: 350px;
+  height: 200px;
+  border-radius: 50px;
+  margin-right: 10px;
+}
+
+.bg_card_container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+/*About in options*/
+.about_selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about_selection .checkbox{
+  border-radius:20px;
+}
+
+.about_selection h2 {
+  padding: 40px;
+  font-weight: bold;
+}
+
+.about_selection .about_form textarea {
+  border-radius:20px;
+  color:black;
+}
+
+.about_selection .checkbox_selection{
+flex-direction:column;
+justify-content:center;
+margin:10px;
+}
+
+.about_selection .about_form{
+width:500px;
+}
+
+.modal_confirm_button {
+  margin-top: 5px;
+  padding: 8px;
+  background-color: #854d0e;
+  color: white;
+  border-radius: 50px;
 }
 
 /*chat*/
