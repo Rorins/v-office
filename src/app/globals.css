@@ -15,7 +15,46 @@ body {
   color: rgb(var(--foreground-rgb));
   font-family: 'Quicksand', sans-serif;
   font-weight:400;
- 
+  background-color:#f3d3b1;
+}
+
+.loading{
+  height:100vh;
+  width:100vw;
+  position:relative;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+}
+.loader::after,
+.loader::before {
+  content: '';  
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #FFF;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  animation: animloader 2s linear infinite;
+}
+.loader::after {
+  animation-delay: 1s;
+}
+
+@keyframes animloader {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
 }
 
 /*Utilities*/
@@ -35,6 +74,7 @@ body {
 }
 
 /* Main*/
+
 .main {
   background: url("/defaultbg2.jpg");
   background-position: center;
@@ -47,6 +87,17 @@ body {
  height:100vh;
  width:100vw;
 }
+
+.main_page{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center
+}
+.main_page p{
+  margin-bottom:10px;
+}
+
 
 /*aside*/
 
