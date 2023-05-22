@@ -306,6 +306,8 @@ aside .log_out {
   border-radius:50px;
   padding:10px;
   color:white;
+  position: absolute;
+  top: -50px;
 }
 
 .chatbox .messagesbox{
@@ -353,6 +355,18 @@ aside .log_out {
   margin-left:100px;
 }
 
+.chatbox .received{
+  background-color:white;
+  text-align:right;
+  margin-left:100px;
+}
+
+.chatbox .user_message{
+ background-color:black;
+ color:white;
+ border-radius:20px;
+ padding:10px;
+}
 /*Description*/
 
 .main .description{
