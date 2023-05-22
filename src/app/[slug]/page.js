@@ -16,6 +16,7 @@ import AboutMe from "@/components/AboutMe";
 import Canvas from "@/components/Canvas";
 
 function Page() {
+
   const { user, setUser } = useAuthContext();
   const [userData, setUserData] = useState(null)
   const [isThisMyRoom, setIsThisMyRoom] = useState()

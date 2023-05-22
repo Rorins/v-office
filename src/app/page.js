@@ -1,8 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useRouter } from "next/navigation";
+import {SiteContext} from "@/context/SiteContext";
+
+
 
 export default function Home() {
+
+  const [siteState, setSiteState] = useContext(SiteContext);
+
   const router = useRouter();
 
   
@@ -16,7 +22,7 @@ export default function Home() {
       <div className="logo_bg">
       <img  src="/background-logo.svg"/>
       </div>
-
+      {console.log("siteContext", siteState)}
       <div>
       <p>
         Make your office, your home.

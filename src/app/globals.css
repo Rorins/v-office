@@ -121,6 +121,9 @@ aside .log_out {
   margin-right:10px;
 }
 
+.toggle_availability {
+  margin: -20px;
+}
 
 /*Camera*/
 .webcam_container {
@@ -139,6 +142,11 @@ aside .log_out {
 .room_container .colleagues_room{
   height:100%;
   overflow:auto;
+}
+
+.room_label {
+  text-align: center;
+  
 }
 
 .room{
