@@ -61,7 +61,7 @@ export default function Options() {
 </section>
 
 <section className="about_form">
-<textarea onChange={(e) => setAboutMe(e.target.value)}  id="message" rows="4" className="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tell your colleagues something about you!"></textarea>
+<textarea onChange={(e) => setAboutMe(e.target.value)}  id="message" rows="4" className="block p-2.5 w-full text-sm text-black  rounded-lg border border-gray-300 " placeholder="Tell your colleagues something about you!"></textarea>
 </section>
 </div>
 <button onClick={handleSaveAndClose} className="modal_confirm_button">Save and close</button>

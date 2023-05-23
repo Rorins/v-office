@@ -87,11 +87,11 @@ export default function aside() {
           className="hidden lg:block flex-shrink-0 bg_primarycolor_shadow w-full h-full"
         >
           <img className="logo w-52" src="/logo-top.svg" />
-          <div className="room_container flex space-y-10 flex-col mx-4">
+          <div className="room_container flex flex-col mx-4">
             {/* My room */}
             
             <div className="room_section_container">
-            <div className="toggle_availability" onClick={() => ToggleAvailability(user.uid)}>Am I available?</div>
+            <div className="toggle_availability bg-yellow-800 hover:bg-yellow-600 " onClick={() => ToggleAvailability(user.uid)}>Am I available?</div>
             <div className="room_label text-yellow-800">My room</div>
               <div className="my_room">
                 {user &&
@@ -103,8 +103,8 @@ export default function aside() {
               </div>
             </div>
             {/* Colleagues room */}
-            <div className="room_section_container">
-              <div className="room_label">Colleagues room</div>
+            <div className="colleague_label">Colleagues room</div>
+            <div className="colleague_section_container">
               <div className="colleagues_room">
                 {user &&
                   siteState

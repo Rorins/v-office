@@ -107,6 +107,10 @@ aside {
   border-radius:20px;
 }
 
+aside nav{
+  padding:20px;
+}
+
 aside .logo {
   margin: 30px auto;
 }
@@ -122,11 +126,13 @@ aside .log_out {
 }
 
 .toggle_availability {
-  background-color: #854d0e;
   border-radius: 50px;
   text-align: center;
   color: white;
   cursor: pointer;
+  width:150px;
+  margin:0 auto;
+  padding:10px;
 }
 
 /*Camera*/
@@ -150,16 +156,26 @@ aside .log_out {
 }
 
 /* Room */
-
-
-.room_container .colleagues_room{
+.room_container{
   height:100%;
-  overflow:auto;
 }
+
+.room_container .colleague_section_container{
+  height:100%;
+  overflow-y:auto;
+  scrollbar-color: #854d0e;
+  }
 
 .room_label {
   text-align: center;
-  
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.colleague_label {
+  text-align: center;
+  font-weight:bold;
+  color:#854d0e;
 }
 
 .room{
@@ -332,10 +348,11 @@ aside .log_out {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: #854d0e;
 }
 
 .bg_selection h2 {
-  padding: 40px;
+  padding: 30px;
   font-weight: bold;
 }
 
@@ -344,7 +361,7 @@ aside .log_out {
   display: flex;
   overflow-x: scroll;
   flex-wrap: nowrap;
-  background-color: white;
+  background-color: black;
   padding: 20px;
   border: 1px solid #854d0e;
   border-radius: 30px;
@@ -377,19 +394,22 @@ aside .log_out {
 }
 
 .about_selection h2 {
-  padding: 40px;
+  padding: 30px;
   font-weight: bold;
+  color: #854d0e;
 }
 
 .about_selection .about_form textarea {
   border-radius:20px;
-  color:black;
+  margin-left:100px;
+  background-color:black;
 }
 
 .about_selection .checkbox_selection{
 flex-direction:column;
 justify-content:center;
 margin:10px;
+width: 150px;
 }
 
 .about_selection .about_form{
@@ -397,7 +417,7 @@ width:500px;
 }
 
 .modal_confirm_button {
-  margin-top: 5px;
+  margin-top: 20px;
   padding: 8px;
   background-color: #854d0e;
   color: white;
