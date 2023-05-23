@@ -552,6 +552,10 @@ width:500px;
  border-radius:20px;
  padding:10px;
 }
+
+.chatbox .message p{
+  word-wrap: break-word;
+ }
 /*Description*/
 
 .main .description{
