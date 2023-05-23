@@ -270,6 +270,10 @@ aside .log_out {
   border-bottom: 1px solid black;
 }
 
+.youtube_container .result h3 {
+  max-width: 640px;
+}
+
 /*Videochat*/
 .videochat_container {
   position: fixed;

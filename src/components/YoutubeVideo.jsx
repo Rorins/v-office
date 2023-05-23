@@ -263,7 +263,7 @@ export default function YoutubeVideo() {
     <div className="youtube_container">
       <YouTube onStateChange={handlePlayerStateChange} videoId={videoId} opts={opts}  onReady={handlePlayerReady} onSeek={handlePlayerStateChange}/>
       <div>
-        <form onSubmit={handleSearch}>
+        {isThisMyRoom && <form onSubmit={handleSearch}>
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only"
@@ -304,7 +304,7 @@ export default function YoutubeVideo() {
               Search
             </button>
           </div>
-        </form>
+        </form>}
         {/* Display search results */}
         <div>
           {searchResults.map((result) => (
