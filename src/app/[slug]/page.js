@@ -66,7 +66,7 @@ function Page() {
       <Chat />
       <Playlist />
       <Canvas />
-     {userData && <AboutMe description={userData.description} username={userData.name}/>}
+     {userData && userData.descriptionstatus && <AboutMe description={userData.description} username={userData.name}/>}
 
      {/* arrow */}
      <div className="whiteboard_pointer">

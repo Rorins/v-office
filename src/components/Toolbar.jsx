@@ -39,8 +39,8 @@ const openCamera = () => {
     <FontAwesomeIcon className="camera_button" icon={faCamera} />
     </div>  
 
-    <div className="icon gear">
-    <FontAwesomeIcon className="camera_button" onClick={openOptions} icon={faGear} />
+    <div  onClick={openOptions} className="icon gear">
+    <FontAwesomeIcon className="camera_button" icon={faGear} />
     </div>    
 
     <div className="icon chat">
