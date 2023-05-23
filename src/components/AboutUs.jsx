@@ -45,7 +45,7 @@ export default function AboutUs(props) {
         </div>
         </div>
          <div>
-         <button  onClick={props.onClose}  className="modal_close_button">Close</button>
+         <button  onClick={props.onClose}  className="modal_close_button hover:bg-yellow-600">Close</button>
          </div>
         
     </div>
