@@ -2,6 +2,9 @@
 import React, {useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCamera, faCommentDots, faIcons, faVideo, faGear, faCircleQuestion} from "@fortawesome/free-solid-svg-icons";
+import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
+import firebase_app from "@/firebase/config";
+import { useAuthContext } from "@/context/AuthContext";
 //Components
 import Camera from "@/components/Camera";
 import Video from "@/components/Video";
@@ -14,6 +17,21 @@ const [isCameraOpen, setIsCameraOpen] = useState(false);
 const [isAboutUs, setIsAboutUs] = useState(false);
 const [isVideoOpen, setIsVideoOpen] = useState(false);
 const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+const { user, setUser } = useAuthContext();
+
+const updateConferenceStatus = async (bool) => {
+  const { uid } = user;
+  const db = getFirestore(firebase_app);
+  const userRef = doc(db, "users", uid);
+
+  try {
+    await updateDoc(userRef, {
+      conference: bool,
+    });
+  } catch (error) {
+    console.error("Error updating user document:", error);
+  }
+};
 
 //Camera
 const openCamera = () => {
@@ -35,10 +53,12 @@ const openCamera = () => {
   //Video
   const openVideo = () => {
     setIsVideoOpen(true);
+    updateConferenceStatus(true);
   };
 
   const closeVideo = () => {
     setIsVideoOpen(false);
+    updateConferenceStatus(false);
   };
 
   // Options

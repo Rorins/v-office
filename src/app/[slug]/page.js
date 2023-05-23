@@ -15,12 +15,14 @@ import YouTubeVideo from "@/components/YoutubeVideo";
 import AboutMe from "@/components/AboutMe";
 import Canvas from "@/components/Canvas";
 import RoomTag from "@/components/RoomTag";
+import Video from "@/components/Video";
 
 function Page() {
 
   const { user, setUser } = useAuthContext();
   const [userData, setUserData] = useState(null)
   const [isThisMyRoom, setIsThisMyRoom] = useState()
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const handleArrowDownClick = () => {
     const element = document.querySelector(".arrow_down_target");
@@ -35,11 +37,9 @@ function Page() {
     setIsThisMyRoom(checkRoom(uid,roomId));
 }
 
-
   React.useEffect(()=>{
     myRoomCheck()
     }, [])
-
  
   //Retrieve single user data
   const getUser = async () =>{
@@ -49,6 +49,7 @@ function Page() {
       const { result, error } = await getData('users', roomId)
       console.log(result, "SINGLE USER DATA")
       setUserData(result);
+      setIsVideoOpen(result.conference);
   }
 
   //Retrieve single user data on mounted
@@ -63,6 +64,7 @@ function Page() {
       </img>}
       <Aside />
       {isThisMyRoom && <Toolbar />}
+      {!isThisMyRoom && isVideoOpen && <Video />}
       <YouTubeVideo roomStatus={isThisMyRoom} />
       <Chat />
       <Playlist />
