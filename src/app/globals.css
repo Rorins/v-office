@@ -526,3 +526,38 @@ width:500px;
 .arrow_down{
   cursor:pointer
 }
+
+/*about us*/
+.aboutus_modal{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.about_us{
+  width:800px;
+}
+
+.about_us span{
+  font-weight:bold;
+}
+
+.about_us h1{
+  font-weight:bold;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.about_us h2{
+  font-weight:bold;
+}
+
+.about_us .aurora{
+  margin-bottom:10px;
+}
+
+.aboutus_modal button{
+  position:absolute;
+  bottom:50px;
+  left:50%;
+}

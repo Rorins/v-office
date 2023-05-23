@@ -6,10 +6,12 @@ import { faCamera, faCommentDots, faIcons, faVideo, faGear, faCircleQuestion} fr
 import Camera from "@/components/Camera";
 import Video from "@/components/Video";
 import Options from "@/components/Options";
+import AboutUs from "@/components/AboutUs";
 
 function Toolbar() {
 //tool triggers
 const [isCameraOpen, setIsCameraOpen] = useState(false);
+const [isAboutUs, setIsAboutUs] = useState(false);
 const [isVideoOpen, setIsVideoOpen] = useState(false);
 const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 
@@ -20,6 +22,14 @@ const openCamera = () => {
 
   const closeCamera = () => {
     setIsCameraOpen(false);
+  };
+
+  const openAboutUs = () => {
+    setIsAboutUs(true);
+  };
+
+  const closeAboutUs= () => {
+    setIsAboutUs(false);
   };
 
   //Video
@@ -47,7 +57,7 @@ const openCamera = () => {
     <FontAwesomeIcon className="camera_button" icon={faGear} />
     </div>    
 
-    <div className="icon chat">
+    <div onClick={openAboutUs}  className="icon chat">
     <FontAwesomeIcon className="camera_button" icon={faCircleQuestion} />
     </div>    
 
@@ -56,6 +66,7 @@ const openCamera = () => {
     </div>  
      
     {/* All tools */}
+    {isAboutUs && <AboutUs onClose={closeAboutUs}/>}  
     {isCameraOpen && <Camera onClose={closeCamera}/>}  
    {isVideoOpen && <Video onClose={closeVideo}/>}
    {isOptionsOpen && <Options />}
