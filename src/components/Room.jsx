@@ -19,13 +19,14 @@ export default function Room({user, myRoom}) {
   }
 
   const router = useRouter();
+  const availabilityType = user.data.status ? 'enter_box' : 'busy_box';
 
   return (
         <div className="room rounded-lg mb-2" onClick={navigateRoom}>
           <img className="background" src={user.data.bgroom} >
           </img>
           <h2 className="tag name">{user.data.name}</h2>
-          <h2 className="tag status">{user.data.status ? "Enter" : "Busy"}</h2>
+          <h2 className={`tag status ${availabilityType}`}>{user.data.status ? "Enter" : "Busy"}</h2>
         </div>
       );
 }

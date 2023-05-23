@@ -86,6 +86,16 @@ export default function aside() {
           aria-label="Sidebar"
           className="hidden lg:block flex-shrink-0 bg_primarycolor_shadow w-full h-full"
         >
+          <div className="log_out_container">
+          <button onClick={signOut} className="log_out">
+            <FontAwesomeIcon
+              className="sign_out"
+              icon={faArrowRightFromBracket}
+            />
+           
+          </button>
+          </div>
+          
           <img className="logo w-52" src="/logo-top.svg" />
           <div className="room_container flex flex-col mx-4">
             {/* My room */}
@@ -115,12 +125,7 @@ export default function aside() {
               </div>
             </div>
           </div>
-          <button onClick={signOut} className="log_out">
-            <FontAwesomeIcon
-              className="sign_out"
-              icon={faArrowRightFromBracket}
-            />
-          </button>
+         
         </nav>
       </aside>
     </>

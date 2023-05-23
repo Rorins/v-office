@@ -14,6 +14,7 @@ import Toolbar from "@/components/Toolbar";
 import YouTubeVideo from "@/components/YoutubeVideo";
 import AboutMe from "@/components/AboutMe";
 import Canvas from "@/components/Canvas";
+import RoomTag from "@/components/RoomTag";
 
 function Page() {
 
@@ -66,6 +67,7 @@ function Page() {
       <Chat />
       <Playlist />
       <Canvas />
+      {userData && <RoomTag username={userData.name} />}
      {userData && userData.descriptionstatus && <AboutMe description={userData.description} username={userData.name}/>}
 
      {/* arrow */}

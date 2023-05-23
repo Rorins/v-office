@@ -54,8 +54,8 @@ export default function Options() {
             <h2>Change about you</h2>
 <div className="flex">
 <section className="checkbox_selection flex">
-<div className="flex checkbox p-2 items-center bg-black pl-4 border border-gray-200 rounded dark:border-gray-700">
-    <input onChange={(e) => setShowAboutYou(e.target.checked)} id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+<div className="flex checkbox p-2 items-center bg-black pl-4 border border-gray-200 rounded">
+    <input onChange={(e) => setShowAboutYou(e.target.checked)} id="bordered-checkbox-1" type="checkbox" value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 :focus:ring-blue-600 " />
     <label for="bordered-checkbox-1" className="w-full py-4 ml-2 text-sm font-medium text-white">Show about you tag to visitors</label>
 </div>
 </section>
@@ -64,7 +64,7 @@ export default function Options() {
 <textarea onChange={(e) => setAboutMe(e.target.value)}  id="message" rows="4" className="block p-2.5 w-full text-sm text-black  rounded-lg border border-gray-300 " placeholder="Tell your colleagues something about you!"></textarea>
 </section>
 </div>
-<button onClick={handleSaveAndClose} className="modal_confirm_button">Save and close</button>
+<button onClick={handleSaveAndClose} className="modal_confirm_button bg-yellow-800 hover:bg-yellow-600">Save and close</button>
         </div>
         
     </div>
