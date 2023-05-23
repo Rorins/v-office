@@ -137,7 +137,7 @@ export default function YoutubeVideo() {
           currenttime: newCurrentTime,
           videostatus: newVideostate,
         });
-        console.log("Document updated successfully");
+    
       } catch (error) {
         console.error("Error updating document:", error);
       }

@@ -45,9 +45,9 @@ function Page() {
   const getUser = async () =>{
       const currentURL = parse(window.location.href);
       const roomId = currentURL.pathname.substring(1);
-      console.log(roomId, "ROOM ID")
+
       const { result, error } = await getData('users', roomId)
-      console.log(result, "SINGLE USER DATA")
+
       setUserData(result);
       setIsVideoOpen(result.conference);
   }

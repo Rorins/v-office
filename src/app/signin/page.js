@@ -21,7 +21,7 @@ function Page() {
 
     setUser(result.user);
 
-console.log(result)
+
   };
   
   React.useEffect(() => {

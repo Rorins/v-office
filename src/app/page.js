@@ -22,7 +22,7 @@ export default function Home() {
       <div className="logo_bg">
       <img  src="/background-logo.svg"/>
       </div>
-      {console.log("siteContext", siteState)}
+    
       <div>
       <p className="intro_title">
         Make your office, your home.

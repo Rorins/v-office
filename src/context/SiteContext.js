@@ -11,7 +11,7 @@ const SiteContextProvider = ({ children }) => {
 
   return (
     <SiteContext.Provider value={[siteState, setSiteState]}>
-      {loading ? <div className="loading"><span class="loader"></span></div> : children}
+      {loading ? <div className="loading"><span className="loader"></span></div> : children}
     </SiteContext.Provider>
   );
 };

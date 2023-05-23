@@ -24,7 +24,7 @@ export default function aside() {
   //Retrieve users data
   const getUsers = async () => {
     const { usersData, error } = await getAllData("users");
-    console.log(usersData, "DATA ARRIVED");
+   
     setSiteState(usersData);
   };
 
@@ -41,7 +41,7 @@ export default function aside() {
   React.useEffect(() => {
     if (user === null) {
       router.push("/signin");
-      console.log("signed out");
+   
     }
   }, [user]);
 

@@ -18,7 +18,7 @@ export default async function getAllData(coll) {
         
         usersData.push(user);
       });
-      console.log("users in array", usersData)
+  
       return { usersData, error: null };
     } catch (error) {
       return { usersData: null, error };
