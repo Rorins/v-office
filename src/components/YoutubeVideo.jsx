@@ -48,6 +48,7 @@ export default function YoutubeVideo() {
     const currentURL = parse(window.location.href);
     const roomId = currentURL.pathname.substring(1);
     if (!isThisMyRoom) {
+      
       try {
         const docRef = doc(db, "users", roomId);
         const docSnapshot = await getDoc(docRef);
@@ -56,11 +57,12 @@ export default function YoutubeVideo() {
           const data = docSnapshot.data();
           const videostate = data.videostatus;
         
-          opts = {
+          opts = { //Adding non clicability as it's not my room and I am visitor
             height: "390",
             width: "640",
             playerVars: {
               autoplay: videostate === "play" ? 1 : 0,
+              controls: 0,
             },
           };
         }
@@ -161,10 +163,11 @@ export default function YoutubeVideo() {
       }
     }
   };
-
+  
   //Visitor youtube check for updates
   useEffect(() => {
     if (!isThisMyRoom) {
+
       intervalRef.current = setInterval(async () => {
         const currentURL = new URL(window.location.href);
         const roomId = currentURL.pathname.substring(1);
@@ -173,10 +176,29 @@ export default function YoutubeVideo() {
         try {
           const snapshot = await getDoc(docRef); // Declare a separate variable to capture the snapshot
           if (snapshot.exists()) {
-            const data = snapshot.data();
+            const data = snapshot.data();            
 
-            // controllare data.videoId e aggiornare player se diverso da quello nello state
-            // quindi poi lo cambiamo nello state e nel player
+            // check the delay between videos, if it's too much the video will sync again
+
+            let myVideoTime = player.getCurrentTime();
+            const delay = myVideoTime - data.currenttime;
+
+            const MAX_DELAY = 4
+
+            if (Math.abs(delay) > MAX_DELAY) {
+              player.seekTo(data.currenttime, true);
+            }
+
+            // Changing videos if the room owner has already done so
+
+            let currentVideoId = player.getVideoData().video_id;
+
+            if (currentVideoId !== data.videoid) {
+              player.loadVideoById(data.videoid);
+              player.seekTo(data.currenttime, true);
+            }
+
+            // syncing the status of the player between the room owner and visitor
 
             const ownerVideoStatus = data.videostatus;
 
@@ -203,6 +225,11 @@ export default function YoutubeVideo() {
   const handlePlayerReady = async (event) => {
     setPlayer(event.target); // Store the player instance
     if (!isThisMyRoom) {
+
+      // Visitors can't interact with the room owner youtube.
+
+      event.target.getIframe().style.pointerEvents = "none";
+
       const currentURL = parse(window.location.href);
       const roomId = currentURL.pathname.substring(1);
   
@@ -234,7 +261,7 @@ export default function YoutubeVideo() {
     // Main Youtube
     <Draggable>
     <div className="youtube_container">
-      <YouTube onStateChange={handlePlayerStateChange} videoId={videoId} opts={opts}  onReady={handlePlayerReady}/>
+      <YouTube onStateChange={handlePlayerStateChange} videoId={videoId} opts={opts}  onReady={handlePlayerReady} onSeek={handlePlayerStateChange}/>
       <div>
         <form onSubmit={handleSearch}>
           <label
