@@ -1,7 +1,7 @@
 "use client";
 import React, {useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCamera, faCommentDots, faIcons, faVideo, faGear} from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faCommentDots, faIcons, faVideo, faGear, faCircleQuestion} from "@fortawesome/free-solid-svg-icons";
 //Components
 import Camera from "@/components/Camera";
 import Video from "@/components/Video";
@@ -16,6 +16,10 @@ const [isOptionsOpen, setIsOptionsOpen] = useState(false);
 //Camera
 const openCamera = () => {
     setIsCameraOpen(true);
+  };
+
+  const closeCamera = () => {
+    setIsCameraOpen(false);
   };
 
   //Video
@@ -44,7 +48,7 @@ const openCamera = () => {
     </div>    
 
     <div className="icon chat">
-    <FontAwesomeIcon className="camera_button" icon={faCommentDots} />
+    <FontAwesomeIcon className="camera_button" icon={faCircleQuestion} />
     </div>    
 
      <div className="icon video" onClick={openVideo} >
@@ -52,7 +56,7 @@ const openCamera = () => {
     </div>  
      
     {/* All tools */}
-    {isCameraOpen && <Camera/>}  
+    {isCameraOpen && <Camera onClose={closeCamera}/>}  
    {isVideoOpen && <Video onClose={closeVideo}/>}
    {isOptionsOpen && <Options />}
     </div>

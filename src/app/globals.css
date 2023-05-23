@@ -138,6 +138,15 @@ aside .log_out {
   top: 50%;
   right:50%;
   cursor:grab;
+  border-radius:20px;
+  background-color: #f3d3b1;
+  padding:20px;
+}
+
+.webcam_container .close{
+  cursor:pointer;
+  position: absolute;
+  bottom: 20px;
 }
 
 /* Room */
