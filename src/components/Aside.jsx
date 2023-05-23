@@ -12,7 +12,7 @@ import getAllData from "@/firebase/firestore/getAllData";
 //components
 import Room from "@/components/Room";
 
-export default function aside() {
+export default function Aside() {
 
   const db = getFirestore(firebase_app);
 

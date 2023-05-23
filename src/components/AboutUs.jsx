@@ -16,7 +16,7 @@ export default function AboutUs(props) {
             I never considered it a job, I just had so much fun creating games until I came across the incredible world of web development.
             Decided to pursue a coding bootcamp to get my skills recognized and graduated as a Full-stack developer.
             <span>Highly focused on the Front-end with HTML, CSS/SASS,Javascript, React/Next/Gatsby, Vue/Nuxt and PHP, firebase for Back-end.</span>
-            To me technology and coding are an incredible art that can not only change the world we live in but it's also a tool that can make any idea and dream come to life.
+            To me technology and coding are an incredible art that can not only change the world we live in but it&apos;s also a tool that can make any idea and dream come to life.
             </p> 
 
             <p className="davide">

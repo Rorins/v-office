@@ -7,7 +7,7 @@ export default function RoomTag({username}) {
   return (
     <Draggable>
     <div className="room_tag">
-    <span className="title">You are in {username}'s room</span>
+    <span className="title">You are in {username}&apos;s room</span>
     </div>
     </Draggable>
   );
