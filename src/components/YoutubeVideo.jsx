@@ -14,7 +14,7 @@ export default function YoutubeVideo() {
   const { user, setUser } = useAuthContext();
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [videoId, setVideoId] = useState("YB0SqL1A9NU");
+  const [videoId, setVideoId] = useState("lAE9qZKjxkE");
   const [currentTime, setCurrentTime] = useState(0);
   const [isThisMyRoom, setIsThisMyRoom] = useState();
   const [player, setPlayer] = useState(null); // Store the player instance
