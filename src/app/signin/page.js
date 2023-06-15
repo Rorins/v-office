@@ -110,10 +110,10 @@ function Page() {
             <p className="mt-10 text-center text-sm text-gray-500">
               Need credentials to enter?{" "}
               <a
-                href="#"
+                href="https://drive.google.com/file/d/1818wD8Jw9gjUYY5iPOtX097Ad4AQWWar/view?usp=drive_link"
                 className="font-semibold leading-6 text-yellow-700 hover:text-yellow-600"
               >
-                Contact your company
+                Click here
               </a>
             </p>
           </div>
